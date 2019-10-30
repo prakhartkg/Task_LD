@@ -1,0 +1,17 @@
+# dependencies
+src/node_modules/**
+# env variable
+src/node_modules/*.env
+#logs folder
+/src/logs/**
+logs
+*.log
+*.vscode
+/playground/**
+/src/*.env
+*.cassandraWorkbench.jsonc
+*.cassandraWorkbench
+src/package-lock.json
+src/coverage
+**/.nyc_output
+webhook.txt

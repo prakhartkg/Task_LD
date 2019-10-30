@@ -6,7 +6,7 @@ const {
 } = require('../../../config');
 
 
-const testConnections = async () => { 
+const testConnections = async () => {
   log.info('testConnections called');
   const connectionStatus = {
     apiAccess: true,

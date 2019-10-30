@@ -1,0 +1,15 @@
+**/node_modules
+npm-debug.log
+Dockerfile*
+docker-compose*
+*/script.cql
+*/schema.md
+.dockerignore
+.git
+.gitignore
+.env
+*/obj
+README.md
+LICENSE
+.vscode
+/docs
