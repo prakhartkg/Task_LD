@@ -12,7 +12,7 @@ exports.addDepartment = async departmentBody => {
   log.info('addDepartment called');
   const department = await departmentSvc.addDepartment(departmentBody);
   log.info('addDepartment exit');
-  return resObj.sendRes(200, codes.CODE_800, department);
+  return resObj.sendRes(201, codes.CODE_800, department);
 };
 
 exports.getAllDepartments = async () => {

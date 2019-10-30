@@ -3,6 +3,7 @@ const {
   log,
   resObj,
   codes,
+  throwError,
 } = require('../../../config');
 
 const {
@@ -27,14 +28,17 @@ exports.addUser = async (userObj, currentLoginUser) => {
   return resObj.sendRes(201, codes.CODE_800, user);
 };
 
-exports.deleteUser = async userId => {
+exports.deleteUser = async (userId, currentLoginUser) => {
   log.info(`deleteUser called with userId : ${userId}`);
+  if (currentLoginUser._id === userId) {
+    throwError(403, codes.CODE_8003);
+  }
   await userSvc.deleteUser(userId);
   return resObj.sendRes(204, codes.CODE_800, null);
 };
 
-exports.updateUser = async (userId, userBody) => {
+exports.updateUser = async (userId, userBody, currentLoginUser) => {
   log.info(`updateUser called with userId : ${userId}`);
-  const user = await userSvc.updateUser(userId, userBody);
+  const user = await userSvc.updateUser(userId, userBody, currentLoginUser);
   return resObj.sendRes(200, codes.CODE_800, user);
 };

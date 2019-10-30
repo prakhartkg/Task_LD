@@ -24,7 +24,7 @@ exports.getUserByEmail = async email => {
     validationHelper.throwIfModelValidationError(err);
     throwError(403, codes.CODE_500);
   }
-  if (!response) {
+  if (!response || response.isDeleted) {
     throwError(401, codes.CODE_900);
   }
   log.info('getUserByEmail DAO exited');
@@ -40,7 +40,7 @@ exports.getUserById = async id => {
   }
   log.info('getUserById DAO exited');
   if (!response || response.isDeleted) {
-    throwError(403, codes.CODE_8001);
+    throwError(404, codes.CODE_8001);
   }
   return response;
 };
@@ -66,7 +66,7 @@ exports.deleteUserById = async id => {
   log.info('deleteUserById DAL  called');
   await exec(this.getUserById(id));
   const [error, resp] = await exec(
-    User.findOneAndUpdate({ _id: id }, { isDeleted: true }),
+    User.findOneAndUpdate({ _id: id }, { isDeleted: true }, { new: true }).lean(),
   );
   if (error) {
     validationHelper.throwIfModelValidationError(error);

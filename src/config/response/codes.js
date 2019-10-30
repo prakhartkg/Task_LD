@@ -64,6 +64,16 @@ module.exports = {
     status: false,
     msg: 'User already present',
   },
+  CODE_8003: {
+    statusCode: 8003,
+    status: false,
+    msg: 'You are not allowed to delete yourself.',
+  },
+  CODE_8004: {
+    statusCode: 8003,
+    status: false,
+    msg: 'You are not allowed to change your department.',
+  },
 
   // Codes for Department
   CODE_9000: {

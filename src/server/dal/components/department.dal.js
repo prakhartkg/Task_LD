@@ -30,7 +30,19 @@ exports.getDepartmentById = async departmentId => {
   log.info('getDepartmentById DAO exited');
   return response;
 };
-
+exports.getDepartmentByName = async departmentName => {
+  log.info('getDepartmentById DAL  called');
+  const [err, response] = await exec(Department.findOne({ departmentName }));
+  if (err) {
+    validationHelper.throwIfModelValidationError(err);
+    throwError(403, codes.CODE_500);
+  }
+  if (!response) {
+    throwError(404, codes.CODE_9000);
+  }
+  log.info('getDepartmentById DAO exited');
+  return response;
+};
 exports.getAllDepartments = async () => {
   log.info('getAllDepartments DAL  called');
   const [err, response] = await exec(Department.find());

@@ -6,10 +6,11 @@ const DepartmentSchema = new mongoose.Schema({
     required: true,
     trim: true,
     minlength: 1,
+    index: true,
   },
   departmentType: {
     type: String,
-    default: null,
+    default: 'OTHERS',
     trim: true,
     minlength: 1,
   },

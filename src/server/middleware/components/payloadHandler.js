@@ -50,14 +50,14 @@ exports.updateUser = (req, res, next) => {
   });
   const result = schema.validate(userBody);
   throwValidationError(result);
-  return [req.params.id, userBody];
+  return [req.params.id, userBody, req.userInfo];
 };
 
 exports.addDepartment = (req, res, next) => {
   const departmentBody = _.pick(req.body, ['departmentName']);
   const schema = Joi.object().keys({
     departmentName: Joi.string().trim().min(1).required()
-      .label('logonId'),
+      .label('departmentName'),
   });
   const result = schema.validate(departmentBody);
   throwValidationError(result);
@@ -68,4 +68,4 @@ exports.getAllDepartments = (req, res, next) => [];
 
 exports.getUsers = (req, res, next) => [req.query.page, req.query.size];
 
-exports.deleteUser = (req, res, next) => [req.params.id];
+exports.deleteUser = (req, res, next) => [req.params.id, req.userInfo];

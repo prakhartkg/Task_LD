@@ -1,19 +1,29 @@
 const {
-  log, codes, throwError,
+  log, codes, throwError, exec,
 } = require('../../../config');
 
 const { departmentDAL } = require('../../dal');
 
 exports.addDepartment = async departmentObj => {
   log.info('addDepartment service called');
-  const dept = await departmentDAL.getDepartmentByName(departmentObj.departmentName);
+  const [error, dept] = await exec(departmentDAL.getDepartmentByName(departmentObj.departmentName));
+  if (error && error.httpStatusCode !== 404) {
+    throw error;
+  }
   if (dept) {
     log.error(`department: ${dept.departmentName} already present `);
-    throwError(400, codes.CODE_9000);
+    throwError(400, codes.CODE_9001);
   }
   const department = await departmentDAL.addDepartment(departmentObj);
   log.info('addDepartment service exit');
   return department;
+};
+
+exports.getDepartmentById = async departmentId => {
+  log.info('getDepartmentById service called');
+  const departments = await departmentDAL.getDepartmentById(departmentId);
+  log.info('getAllDepartments service exit');
+  return departments;
 };
 
 exports.getAllDepartments = async () => {
