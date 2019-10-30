@@ -52,11 +52,11 @@ exports.addUser = async userObj => {
 
 exports.updateUser = async (userId, userObj) => {
   log.info('updateUser service called');
-  if(userObj.department){
-    const department = await departmentDAL.getDepartmentById(userObj.department);
+  if (userObj.department) {
+    await departmentDAL.getDepartmentById(userObj.department);
   }
   const user = await userDAL.updateUser(userId, userObj);
-  return user;
+  return user.isDeleted;
 };
 
 exports.deleteUser = async userId => {

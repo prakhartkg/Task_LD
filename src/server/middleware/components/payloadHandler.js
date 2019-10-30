@@ -23,14 +23,18 @@ exports.addUser = (req, res, next) => {
   const schema = Joi.object().keys({
     firstName: Joi.string().min(1).required()
       .label('firstName'),
-    lastName: Joi.string().trim().min(1).required().label('lastName'),
-    email:Joi.string().trim().email().min(1).required().label('email'),
-    department:Joi.string().trim().min(1).required().label('department'),
-    phone:Joi.string().trim().min(10).label('phone')
+    lastName: Joi.string().trim().min(1).required()
+      .label('lastName'),
+    email: Joi.string().trim().email().min(1)
+      .required()
+      .label('email'),
+    department: Joi.string().trim().min(1).required()
+      .label('department'),
+    phone: Joi.string().trim().min(10).label('phone'),
   });
   const result = schema.validate(userBody);
   throwValidationError(result);
-  return [userBody,req.userInfo];
+  return [userBody, req.userInfo];
 };
 
 exports.updateUser = (req, res, next) => {
@@ -39,9 +43,10 @@ exports.updateUser = (req, res, next) => {
   const schema = Joi.object().keys({
     firstName: Joi.string().trim().min(1).label('firstName'),
     lastName: Joi.string().trim().min(1).label('lastName'),
-    email:Joi.string().trim().email().min(1).label('email'),
-    department:Joi.string().trim().min(1).label('department'),
-    phone:Joi.string().trim().min(10).label('phone')
+    email: Joi.string().trim().email().min(1)
+      .label('email'),
+    department: Joi.string().trim().min(1).label('department'),
+    phone: Joi.string().trim().min(10).label('phone'),
   });
   const result = schema.validate(userBody);
   throwValidationError(result);
@@ -61,6 +66,6 @@ exports.addDepartment = (req, res, next) => {
 
 exports.getAllDepartments = (req, res, next) => [];
 
-exports.getUsers = (req, res, next) => [req.query.page,req.query.size];
+exports.getUsers = (req, res, next) => [req.query.page, req.query.size];
 
 exports.deleteUser = (req, res, next) => [req.params.id];
