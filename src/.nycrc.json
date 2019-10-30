@@ -1,0 +1,8 @@
+{
+  "skip-full":true,
+  "check-coverage":false,
+  "reporter": [
+    "text-summary",
+    "html"
+  ]
+}

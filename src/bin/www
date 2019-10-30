@@ -1,0 +1,28 @@
+const http = require('http');
+const env = require('dotenv').config();
+require('dotenv-expand')(env);
+const {log,mongoConnection} = require('../config');
+
+if (env.error) {
+  throw env.error;
+}
+
+const app = require('../app');
+
+const port = parseInt(process.env.PORT, 10);
+const host = process.env.HOST;
+
+app.set('port', port);
+
+//= ====================== START THE SERVER====================
+
+const server = http.createServer(app);
+
+// =================DB SETUP (cassandra setup)=========================
+console.log('----------------Booting up User Service ----------------');
+mongoConnection.connectToDatabase(()=>{
+  server.listen(port, () => {
+    log.info(`Server started...{ ENV ${process.env.NODE_ENV || 'local'} } Check on: http://${host}/${port}`);
+  });
+});
+

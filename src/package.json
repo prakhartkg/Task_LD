@@ -1,0 +1,46 @@
+{
+  "name": "src",
+  "version": "1.0.0",
+  "description": "Beckend task for Liquidity Digital",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./bin/www",
+    "dev": "export NODE_ENV=DEV && nodemon ./bin/www",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "test:unit": "export NODE_ENV=test && nyc  mocha ./test/unit/**/*.js --exit --timeout 10000",
+    "test:integration": "export NODE_ENV=test && nyc mocha ./test/integration/**/*.js --exit --timeout 10000",
+    "test:all": "export NODE_ENV=test && nyc  mocha ./test/**/*.js --exit --timeout 10000"
+  },
+  "author": "Prakhar Jain",
+  "license": "ISC",
+  "dependencies": {
+    "@hapi/joi": "16.1.7",
+    "axios": "^0.19.0",
+    "bcrypt": "3.0.6",
+    "dotenv": "^8.2.0",
+    "dotenv-expand": "^5.1.0",
+    "express": "^4.16.3",
+    "helmet": "^3.18.0",
+    "lodash": "^4.17.15",
+    "mongoose": "5.7.7",
+    "morgan": "^1.9.1",
+    "rotating-file-stream": "^1.4.0",
+    "useragent": "2.3.0",
+    "validator": "^12.0.0",
+    "winston": "^3.0.0"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "eslint": "6.6.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "husky": "^3.0.2",
+    "mocha": "^6.2.2",
+    "nyc": "^14.1.1",
+    "supertest": "^4.0.2"
+  },
+  "engines": {
+    "node": ">=8.11.3"
+  }
+}
