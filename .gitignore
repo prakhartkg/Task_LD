@@ -8,7 +8,6 @@ logs
 *.log
 *.vscode
 /playground/**
-/src/*.env
 *.cassandraWorkbench.jsonc
 *.cassandraWorkbench
 src/package-lock.json

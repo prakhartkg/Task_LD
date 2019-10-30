@@ -12,7 +12,7 @@ const config = () => {
     socketTimeoutMS: 45000,
     useUnifiedTopology: true,
     useCreateIndex: true,
-    useFindAndModify: true,
+    useFindAndModify: false,
   };
 
   let url = process.env.MONGODB_URL;

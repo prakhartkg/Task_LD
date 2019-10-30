@@ -71,6 +71,7 @@
     "complexity": ["error",9],
     "no-floating-decimal": "error",
     "no-unsafe-finally": "warn",
+    "no-underscore-dangle":"off",
     "no-console": ["error", {
       "allow": ["log", "warn", "error"]
     }],

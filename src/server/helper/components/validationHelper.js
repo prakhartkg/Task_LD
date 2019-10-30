@@ -1,25 +1,19 @@
+const _ = require('lodash');
 const {
   log,
   codes,
-  respMw,
+  throwError,
 } = require('../../../config');
 
-const VALIDATION_TYPE = [
-  'apollo.model.validator.invalidvalue',
-  'apollo.model.save.unsetrequired',
-  'apollo.model.save.unsetkey',
-];
+const MODEL_VALIDATION_ERR_NAME = ['ValidationError', 'MongoError'];
 
-const throwIfValidationErr = err => {
-  console.log(err);
-  if (err.type && (VALIDATION_TYPE.indexOf(err.type) !== -1)) {
-    log.error('----------ValidationError--------');
-    const code = { ...codes.CODE_933 };
-    code.msg = `${code.msg} : ${err.message} `;
-    code.description = err.message;
-    respMw.TE(400, code);
+const throwIfModelValidationError = err => {
+  if (_.includes(MODEL_VALIDATION_ERR_NAME, err.name)) {
+    log.error('-----Mongo Scheamsa validation error');
+    const errorCode = codes.CODE_827;
+    errorCode.description = `${err.message}`;
+    throwError(400, errorCode);
   }
-  respMw.TE(err.httpStatusCode || 500, err);
 };
 
 /**
@@ -33,17 +27,17 @@ const throwValidationError = result => {
     code.description = result.error.details.filter(e => e.message)
       .map(e => e.message).reduce((c, e) => c.concat(e));
     code.msg = `${code.msg} : ${code.description} `;
-    respMw.TE(400, code);
+    throwError(400, code);
   }
 };
 
 const throwErrorWithCode = (status = 500, code) => {
-  respMw.TE(status, code);
+  throwError(status, code);
 };
 
 
 module.exports = {
-  throwIfValidationErr,
+  throwIfModelValidationError,
   throwValidationError,
   throwErrorWithCode,
 };

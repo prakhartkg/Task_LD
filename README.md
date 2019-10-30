@@ -1,14 +1,13 @@
-# Brightlab User Service
+# Liquidity Digital Test Assignment Task
 
 ## Steps to run
 - Clone the repo.
 - Install `Node ^10.9`,
-- Install `Cassandra` and `Redis` on local server
-- Start `Cassandra` and `Redis` Server
+- Install `Mongodb` on local server
+- Start `mongodbs` Server
 
-- Docker Run will copy `.env` file from `setup` folder to `src`.
+- Docker Run will copy `.env` file from `setup` folder to `src`. and `setup.sh` file will put all env from global enviroment variables.
 
-- Copy `.env` file from `docs` to `src` folder for local server setup
 - Run `npm install` to install all npm pakages
 - Run `npm start` to start application or Run `npm run dev` to start application with nodemon
 
