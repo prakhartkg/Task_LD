@@ -23,10 +23,8 @@ RUN npm install --production
 
 #Copy env file
 COPY ./setup/*.env ${APP}
-COPY ./setup/setup.sh ${APP}
-RUN chmod 0755 setup.sh
 
 #port expose on 9000 inside the container
 EXPOSE 9000
 
-ENTRYPOINT ["./setup.sh"]
+CMD npm start

@@ -1,0 +1,26 @@
+version: "3"
+services:
+  liquidity:
+    container_name: liquidity
+    build: .
+    depends_on: 
+      - mongo
+    ports:
+      - "9000:9000"
+
+  mongo:
+    container_name: mongo
+    image: mongo
+    ports:
+      - "27017:27017"
+
+  mongo_seed:
+    image: mongo
+    depends_on: 
+      - liquidity
+    links:
+      - mongo
+    volumes:
+      - ./setup:/setup
+    command:
+      /setup/importscript.sh

@@ -5,6 +5,7 @@ const helmet = require('helmet');
 const { mongoConnection, log } = require('./config');
 const userRouter = require('./server/routes');
 const { errorHandler } = require('./server/middleware');
+const { initialDataHelper } = require('./server/helper');
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.use(morgan('combined', {
 
 mongoConnection.connectToDatabase(() => {
   log.info('MongoDB Connected sucessfully');
+  initialDataHelper.initializeData();
 });
 
 // ============== configure app to use bodyParser()================

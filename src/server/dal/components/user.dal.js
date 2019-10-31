@@ -48,7 +48,7 @@ exports.getUserById = async id => {
 exports.getAllUsers = async (pageNumber, pageSize) => {
   log.info('getAllUsers DAL  called');
   const [err, response] = await exec(
-    User.find().select('-password')
+    User.find({ isDeleted: false }).select('-password')
       .skip((parseInt(pageNumber, 10) - 1) * parseInt(pageSize, 10))
       .limit(parseInt(pageSize, 10))
       .sort('-createdDate')
@@ -59,7 +59,7 @@ exports.getAllUsers = async (pageNumber, pageSize) => {
     throwError(403, codes.CODE_500);
   }
   log.info('getAllUsers DAO exited');
-  return response.filter(user => !user.isDeleted);
+  return response;
 };
 
 exports.deleteUserById = async id => {
