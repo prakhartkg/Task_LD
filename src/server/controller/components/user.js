@@ -42,3 +42,9 @@ exports.updateUser = async (userId, userBody, currentLoginUser) => {
   const user = await userSvc.updateUser(userId, userBody, currentLoginUser);
   return resObj.sendRes(200, codes.CODE_800, user);
 };
+
+exports.getUsers = async (page, size) => {
+  log.info(`getUsers called with page : ${page} and sixe ${size}`);
+  const users = await userSvc.getAllUsers(page, size);
+  return resObj.sendRes(200, codes.CODE_800, users);
+};

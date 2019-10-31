@@ -10,6 +10,6 @@ router.post('/login', handler(user.login, payload.login));
 router.post('/', authenticate, handler(user.addUser, payload.addUser));
 router.put('/:id', authenticate, handler(user.updateUser, payload.updateUser));
 router.delete('/:id', authenticate, handler(user.deleteUser, payload.deleteUser));
-router.get('/all', authenticate, handler(user.getAllUsers, payload.getAllUsers));
+router.get('/all', authenticate, handler(user.getUsers, payload.getUsers));
 
 module.exports = router;

@@ -48,7 +48,7 @@ exports.getUserById = async id => {
 exports.getAllUsers = async (pageNumber, pageSize) => {
   log.info('getAllUsers DAL  called');
   const [err, response] = await exec(
-    User.find()
+    User.find().select('-password')
       .skip((parseInt(pageNumber, 10) - 1) * parseInt(pageSize, 10))
       .limit(parseInt(pageSize, 10))
       .sort('-createdDate')

@@ -20,9 +20,7 @@ const server = http.createServer(app);
 
 // =================DB SETUP (cassandra setup)=========================
 console.log('----------------Booting up User Service ----------------');
-mongoConnection.connectToDatabase(()=>{
-  server.listen(port, () => {
+server.listen(port, () => {
     log.info(`Server started...{ ENV ${process.env.NODE_ENV || 'local'} } Check on: http://${host}/${port}`);
-  });
 });
 

@@ -2,7 +2,7 @@ const express = require('express');
 const morgan = require('morgan');
 const rfs = require('rotating-file-stream');
 const helmet = require('helmet');
-
+const { mongoConnection, log } = require('./config');
 const userRouter = require('./server/routes');
 const { errorHandler } = require('./server/middleware');
 
@@ -16,6 +16,10 @@ app.use(morgan('combined', {
     maxFiles: 10,
   }),
 }));
+
+mongoConnection.connectToDatabase(() => {
+  log.info('MongoDB Connected sucessfully');
+});
 
 // ============== configure app to use bodyParser()================
 app.use(express.urlencoded({

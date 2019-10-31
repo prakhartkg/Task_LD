@@ -31,13 +31,8 @@ const throwValidationError = result => {
   }
 };
 
-const throwErrorWithCode = (status = 500, code) => {
-  throwError(status, code);
-};
-
 
 module.exports = {
   throwIfModelValidationError,
   throwValidationError,
-  throwErrorWithCode,
 };
