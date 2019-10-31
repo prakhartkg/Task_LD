@@ -27,5 +27,9 @@
 
 ## User Credential for login
 -` logonid: prakhartkg@gmail.com password: admin123`
+- Call login API using above cred which will give user response along with token which is valid for one hour.
+- Use that JWT token in all request with header Authorization
+    for Example :
+    'Authorization':'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZGI5OTJhMTEzNzlkZDQ4YmIwYTFhZTgiLCJpc0RlbGV0ZWQiOmZhbHNlLCJmaXJzdE5hbWUiOiJwcmFraGFyIiwibGFzdE5hbWUiOiJqYWluIiwiZW1haWwiOiJwcmFraGFydGtnQGdtYWlsLmNvbSIsImRlcGFydG1lbnQiOiI1ZGI5OGYxMTQ3NGViMTQyNGY5ZjhhMmIiLCJwaG9uZSI6Ijk0ODMyODkxMzAiLCJjcmVhdGVkRGF0ZSI6IjIwMTktMTAtMzBUMTM6Mzk6NDUuNTQ5WiIsIl9fdiI6MCwiaWF0IjoxNTcyNDU4MDkyLCJleHAiOjE1NzI0NjE2OTJ9.zCQSVz0DVTrFbJbw9BzxiQ6DKHT4NUZCPx04GewFXQ8'
 
 > PORT 9000
