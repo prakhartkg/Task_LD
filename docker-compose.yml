@@ -14,13 +14,13 @@ services:
     ports:
       - "27017:27017"
 
-  mongo_seed:
-    image: mongo
-    depends_on: 
-      - liquidity
-    links:
-      - mongo
-    volumes:
-      - ./setup:/setup
-    command:
-      /setup/importscript.sh
+  # mongo_seed:
+  #   image: mongo
+  #   depends_on: 
+  #     - liquidity
+  #   links:
+  #     - mongo
+  #   volumes:
+  #     - ./setup:/setup
+  #   command:
+  #     /setup/importscript.sh
