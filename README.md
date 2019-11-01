@@ -11,7 +11,7 @@
 
 ## Steps to run using docker compose
 - Install and start docker
-- sudo docker-compose -f "docker-compose.yml" up -d --build
+- `sudo docker-compose -f "docker-compose.yml" up -d --build` To Run services as docker.
 - Docker Run will copy `.env` file from `setup` folder to `src`. and `setup.sh` file will put all env from global enviroment variables currently its not conifgured.
 - It will spin up two containers one for mongo and another for the app. which will be exposed on 9000 port
 
