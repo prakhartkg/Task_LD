@@ -24,7 +24,10 @@
 - To check code coverage goto `src/coverage` folder and open `index.html` file
 
 ## PostMan collection 
--`https://www.getpostman.com/collections/d5243cc6aa90877b6617`
+- `https://www.getpostman.com/collections/d5243cc6aa90877b6617`
+
+## Git Hooks and Eslint
+- git pre-commit included which means on commit it will check eslint and execute test cases then only will commit the code.
 
 ## User Credential for login
 - ` logonid: prakhartkg@gmail.com password: admin123`
