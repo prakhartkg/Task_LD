@@ -7,7 +7,9 @@ exports.initializeData = async () => {
   let err;
   let dept;
   [err, res] = await exec(Department.find());
-  log.error(err);
+  if (err) {
+    log.error(err);
+  }
   if (!res || res.length === 0) {
     const department = {};
     department.departmentName = 'SUPER USER';
@@ -15,7 +17,10 @@ exports.initializeData = async () => {
     [err, dept] = await exec(Department.create(department));
   }
   [err, res] = await exec(User.find());
-  log.error(err);
+
+  if (err) {
+    log.error(err);
+  }
   if (!res || res.length === 0) {
     const user = {
       isDeleted: false,

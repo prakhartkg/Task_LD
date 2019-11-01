@@ -97,7 +97,7 @@ const LoggerConst = ({
         if (info.level === 'error') {
           let fileName = '';
           try {
-            fileName = getFileNameandLine();
+            fileName = process.env.NODE_ENV === 'test' ? 'test' : getFileNameandLine();
           } catch (e) {
             fileName = '';
           }
